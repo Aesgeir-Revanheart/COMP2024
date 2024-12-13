@@ -99,6 +99,10 @@ public abstract class LevelParent extends Observable {
 		timeline.getKeyFrames().add(gameLoop);
 	}
 
+	public void stopTimeline() {
+		timeline.stop();
+	}
+
 	private void initializeBackground() {
 		background.setFocusTraversable(true);
 		background.setFitHeight(screenHeight);
