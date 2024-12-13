@@ -2,9 +2,11 @@ package com.example.demo;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.net.URL;
 
 public class ShieldImage extends ImageView {
 	
+	//IMAGE_NAME to be used later (maybe)
 	private static final String IMAGE_NAME = "/images/shield.png";
 	private static final int SHIELD_SIZE = 200;
 	
@@ -12,7 +14,13 @@ public class ShieldImage extends ImageView {
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
 		//this.setImage(new Image(IMAGE_NAME));
-		this.setImage(new Image(getClass().getResource("/com/example/demo/images/shield.png").toExternalForm()));
+		URL shieldImageURL = getClass().getResource("/com/example/demo/images/shield.png");
+		if (shieldImageURL != null) {
+			this.setImage(new Image(shieldImageURL.toExternalForm()));
+		} else {
+			System.err.println("Shield image resource not found!");
+		}
+
 		this.setVisible(false);
 		this.setFitHeight(SHIELD_SIZE);
 		this.setFitWidth(SHIELD_SIZE);
