@@ -7,9 +7,9 @@ import javafx.util.Duration;
 public class BossLevel extends LevelParent {
 
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
-	private static final int PLAYER_INITIAL_HEALTH = 5;
+	private static final int PLAYER_INITIAL_HEALTH = 3;
 	private final Boss boss;
-	private LevelViewLevelTwo levelView;
+	private BossLevelView levelView;
 	private Timeline shieldTimeline;
 
 	public BossLevel(double screenHeight, double screenWidth) {
@@ -42,7 +42,7 @@ public class BossLevel extends LevelParent {
 
 	@Override
 	protected LevelView instantiateLevelView() {
-		levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH);
+		levelView = new BossLevelView(getRoot(), PLAYER_INITIAL_HEALTH);
 		return levelView;
 	}
 

@@ -13,6 +13,7 @@ public class LevelTwo extends LevelParent {
     // Constructor matching LevelParent's requirements
     public LevelTwo(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+
     }
 
     // Override methods to customize LevelTwo behavior
