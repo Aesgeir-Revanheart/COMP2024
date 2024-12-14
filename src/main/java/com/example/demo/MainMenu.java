@@ -9,74 +9,70 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainMenu {
-
-    private final Stage stage;
     private final Scene scene;
 
     public MainMenu(Stage stage) {
-        this.stage = stage;
-        this.scene = initializeScene();
+        Pane root = new Pane();
+        root.setPrefSize(stage.getWidth(), stage.getHeight());
+
+        // Set Main Menu background
+        ImageView background = new ImageView(new Image(getClass().getResource("/com/example/demo/images/mainmenu.png").toExternalForm()));
+        background.setFitWidth(stage.getWidth());
+        background.setFitHeight(stage.getHeight());
+
+        // Title (Sky Battle)
+        ImageView title = new ImageView(new Image(getClass().getResource("/com/example/demo/images/skybattle.png").toExternalForm()));
+        title.setFitWidth(500); // Slightly smaller width
+        title.setPreserveRatio(true);
+        title.setLayoutX(stage.getWidth() / 2 - title.getFitWidth() / 2); // Centered horizontally
+        title.setLayoutY(20); // Adjusted higher
+
+        // Play Button
+        ImageView playButton = new ImageView(new Image(getClass().getResource("/com/example/demo/images/play.png").toExternalForm()));
+        playButton.setFitWidth(150);
+        playButton.setFitHeight(150);
+        playButton.setLayoutX(stage.getWidth() / 2 - playButton.getFitWidth() / 2 - 200); // Left position
+        playButton.setLayoutY(500); // Lowered
+
+        playButton.setOnMouseClicked(e -> {
+            try {
+                new Controller(stage).startLevelOne();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        // Level Selection Button
+        ImageView levelSelectButton = new ImageView(new Image(getClass().getResource("/com/example/demo/images/levelselection.png").toExternalForm()));
+        levelSelectButton.setFitWidth(150);
+        levelSelectButton.setFitHeight(150);
+        levelSelectButton.setLayoutX(stage.getWidth() / 2 - levelSelectButton.getFitWidth() / 2); // Centered
+        levelSelectButton.setLayoutY(500); // Lowered
+
+        levelSelectButton.setOnMouseClicked(e -> {
+            LevelSelection levelSelection = new LevelSelection(stage);
+            stage.setScene(levelSelection.getScene());
+        });
+
+        // Quit Button
+        ImageView quitButton = new ImageView(new Image(getClass().getResource("/com/example/demo/images/quit.png").toExternalForm()));
+        quitButton.setFitWidth(150);
+        quitButton.setFitHeight(150);
+        quitButton.setLayoutX(stage.getWidth() / 2 - quitButton.getFitWidth() / 2 + 200); // Right position
+        quitButton.setLayoutY(500); // Lowered
+
+        quitButton.setOnMouseClicked(e -> {
+            stage.close();
+        });
+
+        // Add all elements to the root pane
+        root.getChildren().addAll(background, title, playButton, levelSelectButton, quitButton);
+
+        // Set up the scene
+        this.scene = new Scene(root);
     }
 
     public Scene getScene() {
         return scene;
-    }
-
-    private Scene initializeScene() {
-        Pane root = new Pane();
-
-        // Set the background image
-        ImageView background = new ImageView(new Image(getClass().getResource("/com/example/demo/images/mainmenu.png").toExternalForm()));
-        background.setFitHeight(stage.getHeight());
-        background.setFitWidth(stage.getWidth());
-        root.getChildren().add(background);
-
-        // Add the title
-        ImageView title = new ImageView(new Image(getClass().getResource("/com/example/demo/images/skybattle.png").toExternalForm()));
-        title.setFitWidth(500); // Adjust title size
-        title.setPreserveRatio(true);
-        title.setLayoutX(stage.getWidth() / 2 - 250); // Center horizontally
-        title.setLayoutY(50); // Position near the top
-        root.getChildren().add(title);
-
-        // Add the Play button
-        ImageView playButton = createButton("/com/example/demo/images/play.png", stage.getWidth() / 2 - 150, 200);
-        playButton.setOnMouseClicked(e -> launchGame());
-        root.getChildren().add(playButton);
-
-        // Add the Level Selection button
-        ImageView levelSelectButton = createButton("/com/example/demo/images/levelselection.png", stage.getWidth() / 2 - 150, 300);
-        levelSelectButton.setOnMouseClicked(e -> showLevelSelection());
-        root.getChildren().add(levelSelectButton);
-
-        // Add the Quit button
-        ImageView quitButton = createButton("/com/example/demo/images/quit.png", stage.getWidth() / 2 - 150, 400);
-        quitButton.setOnMouseClicked(e -> stage.close());
-        root.getChildren().add(quitButton);
-
-        return new Scene(root, stage.getWidth(), stage.getHeight());
-    }
-
-    private ImageView createButton(String imagePath, double x, double y) {
-        ImageView button = new ImageView(new Image(getClass().getResource(imagePath).toExternalForm()));
-        button.setFitWidth(300); // Button width
-        button.setPreserveRatio(true); // Maintain aspect ratio
-        button.setLayoutX(x);
-        button.setLayoutY(y);
-        return button;
-    }
-
-    private void launchGame() {
-        try {
-            Controller controller = new Controller(stage);
-            controller.startLevelOne(); // Starts LevelOne
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private void showLevelSelection() {
-        LevelSelection levelSelection = new LevelSelection(stage);
-        stage.setScene(levelSelection.getScene());
     }
 }
