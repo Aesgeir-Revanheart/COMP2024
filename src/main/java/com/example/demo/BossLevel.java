@@ -4,7 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
-public class LevelTwo extends LevelParent {
+public class BossLevel extends LevelParent {
 
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
@@ -12,7 +12,7 @@ public class LevelTwo extends LevelParent {
 	private LevelViewLevelTwo levelView;
 	private Timeline shieldTimeline;
 
-	public LevelTwo(double screenHeight, double screenWidth) {
+	public BossLevel(double screenHeight, double screenWidth) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 		boss = new Boss();
 	}
