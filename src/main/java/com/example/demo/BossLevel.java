@@ -6,7 +6,7 @@ import javafx.util.Duration;
 
 public class BossLevel extends LevelParent {
 
-	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
+	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/bossbackground.jpg";
 	private static final int PLAYER_INITIAL_HEALTH = 3;
 	private final Boss boss;
 	private BossLevelView levelView;

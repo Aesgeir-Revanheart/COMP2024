@@ -3,7 +3,7 @@ package com.example.demo;
 public class LevelTwo extends LevelParent {
 
     // Constants for LevelTwo
-    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.jpg";
+    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
     private static final String NEXT_LEVEL = "com.example.demo.LevelThree";
     private static final int TOTAL_ENEMIES = 7; // Adjust difficulty
     private static final int KILLS_TO_ADVANCE = 15; // Higher kill requirement
